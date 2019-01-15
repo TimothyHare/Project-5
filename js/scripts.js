@@ -37,5 +37,6 @@ employeeData +=`  <div class="card">
           <p class="card-text cap">${data[i].location.city},${data[i].location.state}</p>
       </div>
   </div>`;}
-employeeData.append("#gallery");
+$("#gallery").append(employeeData);
 }
+console.log("hey");
