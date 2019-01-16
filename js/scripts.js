@@ -17,7 +17,7 @@ $.ajax({
   success: function(data) {
    console.log(data.results);
    //call function that shows cards
-   displayData(data);
+   displayData(data.results);
 
   }
 });
@@ -27,16 +27,23 @@ let  employeeData = "";
   //loop to cycle through data and display name and image etc
   for (let i = 0; i < data.length; i++ ){
   //console.log("dog");
+
 employeeData +=`  <div class="card">
       <div class="card-img-container">
           <img class="card-img" src="${data[i].picture.large}" alt="profile picture">
       </div>
       <div class="card-info-container">
-          <h3 id="name" class="card-name cap">${data[i].name.first}${data[i].name.last}</h3>
+          <h3 id="name" class="card-name cap">${data[i].name.first} ${data[i].name.last}</h3>
           <p class="card-text">${data[i].email}</p>
           <p class="card-text cap">${data[i].location.city},${data[i].location.state}</p>
       </div>
   </div>`;}
+  // will cause everything to display
 $("#gallery").append(employeeData);
-}
+// popup window function 
+$("div .card").on("click", function(){
+  let modalWindow = $("div .card").index(this);
+  popup(modalWindow);
+});
+};
 console.log("hey");
