@@ -1,4 +1,5 @@
 //This is scripts.js
+// myles and johnny from my cohort has been helping me and giving me tips on how to get things done.
 console.log("success");
                           //SEARCH BAR FEATURE//
 //Create Search Bar variable and use search markup provided by index.html
@@ -40,10 +41,38 @@ employeeData +=`  <div class="card">
   </div>`;}
   // will cause everything to display
 $("#gallery").append(employeeData);
-// popup window function 
+// window function
 $("div .card").on("click", function(){
   let modalWindow = $("div .card").index(this);
-  popup(modalWindow);
+  showWindow(modalWindow);
 });
 };
 console.log("hey");
+let info;
+function showWindow(index){
+  let card;
+  let date = info[index].dob.date;
+  let month = date.slice(5,7);
+  let day = date.slice(8,10);
+  let year = date.slice(index,4);
+    card = `
+      <div class="modal-container">
+        <div class="modal">
+          <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+            <div class="modal-info-container">
+              <img class="modal-img" src="${results[index].picture.large} " alt="profile picture">
+              <h3 id="name" class="modal-name cap">${results[index].name.first} ${results[index].name.last}</h3>
+              <p class="modal-text">${results[index].email}</p>
+              <p class="modal-text cap">${results[index].location.city}, ${results[index].location.state}</p>
+              <hr>
+              <p class="modal-text">${results[index].phone}</p>
+              <p class="modal-text">${results[index].location.street}, ${results[index].location.state} ${results[index].location.postcode}</p>
+              <p class="modal-text">Birthday:${month}/${day}/${year}</p>
+            </div>
+    `;
+    let div = document.querySelector('div');
+ $(div).append(card);
+ $('#modal-close-btn').on('click', function() {
+   $('.modal-container').remove();
+ });
+}
