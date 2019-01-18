@@ -44,12 +44,11 @@ $("#gallery").append(employeeData);
 // window function
 $("div .card").on("click", function(){
   let modalWindow = $("div .card").index(this);
-  showWindow(modalWindow);
+  showWindow(modalWindow, data);
 });
 };
 console.log("hey");
-let info;
-function showWindow(index){
+function showWindow(index, info){
   let card;
   let date = info[index].dob.date;
   let month = date.slice(5,7);
@@ -59,14 +58,14 @@ function showWindow(index){
       <div class="modal-container">
         <div class="modal">
           <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
-            <div class="modal-info-container">
-              <img class="modal-img" src="${results[index].picture.large} " alt="profile picture">
-              <h3 id="name" class="modal-name cap">${results[index].name.first} ${results[index].name.last}</h3>
-              <p class="modal-text">${results[index].email}</p>
-              <p class="modal-text cap">${results[index].location.city}, ${results[index].location.state}</p>
+            <div class="modal-info-container">.
+              <img class="modal-img" src="${info.results[index].picture.large} " alt="profile picture">
+              <h3 id="name" class="modal-name cap">${info.results[index].name.first} ${info.results[index].name.last}</h3>
+              <p class="modal-text">${info.results[index].email}</p>
+              <p class="modal-text cap">${info.results[index].location.city}, ${info.results[index].location.state}</p>
               <hr>
-              <p class="modal-text">${results[index].phone}</p>
-              <p class="modal-text">${results[index].location.street}, ${results[index].location.state} ${results[index].location.postcode}</p>
+              <p class="modal-text">${info.results[index].phone}</p>
+              <p class="modal-text">${info.results[index].location.street}, ${info.results[index].location.state} ${info.results[index].location.postcode}</p>
               <p class="modal-text">Birthday:${month}/${day}/${year}</p>
             </div>
     `;
