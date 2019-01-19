@@ -10,6 +10,25 @@ const searchBar = $('<form action="#" method="get"></form>')
     //append searchbar to search contain to display searchbar
 $(".search-container").append(searchBar);
 
+//function for search feature//
+//Credit: Myles helped me with this.
+function displaySearch(){
+$('.card').hide();
+$('.no-results').hide();
+for (let i = 0; i < $('.card').length; i++) {
+const search = $('.card #name').eq(i).text().indexOf($(this).val());
+if (search != -1) {
+$('.card').eq(i).attr("id", "yup").show();
+}
+}
+if ($('#yup').length < 1) {
+$('.no-results').show();
+}
+}
+// event listener to activate search feature
+$('#search-input').on('keyup', displaySearch);
+
+
 
                                        //FETCHING FUNCTION//
 $.ajax({
@@ -59,13 +78,13 @@ function showWindow(index, info){
         <div class="modal">
           <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
             <div class="modal-info-container">.
-              <img class="modal-img" src="${info.results[index].picture.large} " alt="profile picture">
-              <h3 id="name" class="modal-name cap">${info.results[index].name.first} ${info.results[index].name.last}</h3>
-              <p class="modal-text">${info.results[index].email}</p>
-              <p class="modal-text cap">${info.results[index].location.city}, ${info.results[index].location.state}</p>
+              <img class="modal-img" src="${info[index].picture.large} " alt="profile picture">
+              <h3 id="name" class="modal-name cap">${info[index].name.first} ${info[index].name.last}</h3>
+              <p class="modal-text">${info[index].email}</p>
+              <p class="modal-text cap">${info[index].location.city}, ${info[index].location.state}</p>
               <hr>
-              <p class="modal-text">${info.results[index].phone}</p>
-              <p class="modal-text">${info.results[index].location.street}, ${info.results[index].location.state} ${info.results[index].location.postcode}</p>
+              <p class="modal-text">${info[index].phone}</p>
+              <p class="modal-text">${info[index].location.street}, ${info[index].location.state} ${info[index].location.postcode}</p>
               <p class="modal-text">Birthday:${month}/${day}/${year}</p>
             </div>
     `;
@@ -74,4 +93,4 @@ function showWindow(index, info){
  $('#modal-close-btn').on('click', function() {
    $('.modal-container').remove();
  });
-}
+};
